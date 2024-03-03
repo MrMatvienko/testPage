@@ -1,7 +1,9 @@
+.infoContainer {
+  display: flex;
+  align-items: center;
+}
 .theme_container {
   position: relative;
-  width: 68px;
-  height: 21px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,18 +13,19 @@
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--theme-main-text-color);
 }
-.theme_icon {
-  width: 16px;
-  height: 16px;
+.themeIcon {
+  width: 10px;
+  height: 7px;
   stroke-width: 1.5px;
-  stroke: rgba(255, 255, 255, 0.8);
+  fill: var(--theme-main-text-color);
+  margin-left: 8px;
 }
 
 .dropdownMenu {
   position: absolute;
-  bottom: -124px;
+  bottom: -119px;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
@@ -33,7 +36,7 @@
   border-radius: 8px;
   border: 1px solid #bedbb0;
   box-shadow: 0 4px 16px 0 rgba(17, 17, 17, 0.1);
-  background: #151515;
+  background: var(--theme-wrapper);
   gap: 4px;
   z-index: 99;
 }
@@ -47,7 +50,11 @@
   font-weight: 400;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--theme-text-color);
   cursor: pointer;
   margin-bottom: 4px;
+}
+
+.dropdownMenu ul li:hover {
+  color: var(--theme-text-hover-color);
 }
