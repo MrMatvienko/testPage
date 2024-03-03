@@ -4,7 +4,7 @@
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #161616;
+  background: var(--radio-icons-checked);
   justify-content: space-between;
 }
 .userblock {
@@ -21,10 +21,6 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .header_container {
-    width: 100%;
-    height: 68px;
-  }
   .userblock {
     margin-left: 995px;
   }
