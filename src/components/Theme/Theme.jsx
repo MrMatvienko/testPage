@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CSS from './Theme.module.css';
 export const Theme = () => {
   const [showMenu, setShowMenu] = useState(false);
+
+  const [selectedTheme, setSelectedTheme] = useState(
+    localStorage.getItem('selectedTheme') || 'light' // Встановлення теми з локального сховища або за замовчуванням
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', selectedTheme); // Встановлення теми при завантаженні компонента
+    localStorage.setItem('selectedTheme', selectedTheme); // Збереження обраної теми в локальному сховищі
+  }, [selectedTheme]);
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
   const handleThemeChange = theme => {
-    document.documentElement.setAttribute('data-theme', theme);
+    setSelectedTheme(theme);
   };
   return (
     <div className={CSS.theme_container}>
