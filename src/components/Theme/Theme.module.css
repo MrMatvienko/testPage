@@ -16,11 +16,12 @@
   color: var(--theme-main-text-color);
 }
 .themeIcon {
-  width: 10px;
-  height: 7px;
-  stroke-width: 1.5px;
-  fill: var(--theme-main-text-color);
-  margin-left: 8px;
+  width: 16px;
+  height: 16px;
+  padding-top: 2px;
+  stroke: var(--theme-main-text-color);
+  fill: transparent;
+  margin-left: 1px;
 }
 
 .dropdownMenu {
