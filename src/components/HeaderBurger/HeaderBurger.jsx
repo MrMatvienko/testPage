@@ -1,8 +1,13 @@
 import CSS from './HeaderBurger.module.css';
+import sprite from '../../assets/images/sprite.svg';
 export const HeaderBurger = () => {
   return (
     <>
-      <button className={CSS.btn_burger}>X</button>
+      <button type="button" className={CSS.btnBurger}>
+        <svg className={CSS.burgerIcon}>
+          <use href={`${sprite}#menu-burger`} />
+        </svg>
+      </button>
     </>
   );
 };

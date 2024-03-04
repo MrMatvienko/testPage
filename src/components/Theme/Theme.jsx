@@ -6,11 +6,11 @@ export const Theme = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const [selectedTheme, setSelectedTheme] = useState(
-    localStorage.getItem('selectedTheme') || 'dark' // Встановлення теми з локального сховища або за замовчуванням
+    localStorage.getItem('selectedTheme') || 'dark'
   );
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', selectedTheme); // Встановлення теми при завантаженні компонента
+    document.documentElement.setAttribute('data-theme', selectedTheme);
     localStorage.setItem('selectedTheme', selectedTheme); // Збереження обраної теми в локальному сховищі
   }, [selectedTheme]);
   const toggleMenu = () => {
