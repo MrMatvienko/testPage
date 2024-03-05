@@ -4,9 +4,9 @@ import sprite from 'assets/images/sprite.svg';
 import NeedHelp from './NeedHelp/NeedHelp';
 import css from './SideBar.module.css';
 
-const SideBar = () => {
+const SideBar = ({ showSidebar }) => {
   return (
-    <aside className={css.sidebar}>
+    <aside className={`${css.sidebar} ${showSidebar ? css.showSidebar : ''}`}>
       <div className={css.sidebarHeader}>
         <a href="/" className={css.logoBlock}>
           <div className={css.logoIcon}>
@@ -21,7 +21,6 @@ const SideBar = () => {
         <h2 className={css.sidebarBoardsHeading}>My boards</h2>
         <div className={css.createBoardBlock}>
           <h3 className={css.createBoardText}>Create a new board</h3>
-          {/* <SecondaryAddButton /> */}
         </div>
       </div>
       <div className={css.sidebarBoardsList}></div>

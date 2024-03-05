@@ -1,20 +1,13 @@
 import CSS from './Header.module.css';
 import { HeaderBurger } from 'components/HeaderBurger/HeaderBurger';
-import SideBar from 'components/SideBar/SideBar';
 import { Theme } from 'components/Theme/Theme';
 
-export const Header = () => {
+export const Header = ({ toggleSidebar }) => {
   return (
-    <div className={CSS.homePage}>
-      <div>
-        <SideBar />
-      </div>
-
-      <div className={CSS.headerContainer}>
-        <HeaderBurger />
-        <div className={CSS.userBlock}>
-          <Theme />
-        </div>
+    <div className={CSS.headerContainer}>
+      <HeaderBurger toggleSidebar={toggleSidebar} />
+      <div className={CSS.userBlock}>
+        <Theme />
       </div>
     </div>
   );

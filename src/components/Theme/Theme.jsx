@@ -1,21 +1,45 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import CSS from './Theme.module.css';
 import { UserInfo } from 'components/UserInfo/UserInfo';
 import sprite from '../../assets/images/sprite.svg';
+
 export const Theme = () => {
   const [showMenu, setShowMenu] = useState(false);
-
   const [selectedTheme, setSelectedTheme] = useState(
     localStorage.getItem('selectedTheme') || 'dark'
   );
+  const menuRef = useRef(null);
+  const textRef = useRef(null);
+  const svgRef = useRef(null);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', selectedTheme);
-    localStorage.setItem('selectedTheme', selectedTheme); // Збереження обраної теми в локальному сховищі
+    localStorage.setItem('selectedTheme', selectedTheme);
   }, [selectedTheme]);
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !textRef.current.contains(event.target) &&
+        !svgRef.current.contains(event.target)
+      ) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
   const handleThemeChange = theme => {
     setSelectedTheme(theme);
   };
@@ -23,14 +47,14 @@ export const Theme = () => {
   return (
     <div className={CSS.infoContainer}>
       <div className={CSS.theme_container}>
-        <p className={CSS.theme_text} onClick={toggleMenu}>
+        <p ref={textRef} className={CSS.theme_text} onClick={toggleMenu}>
           Theme
         </p>
-        <svg onClick={toggleMenu} className={CSS.themeIcon}>
+        <svg ref={svgRef} onClick={toggleMenu} className={CSS.themeIcon}>
           <use href={sprite + '#select-menu-16'} />
         </svg>
         {showMenu && (
-          <div className={CSS.dropdownMenu}>
+          <div ref={menuRef} className={CSS.dropdownMenu}>
             <ul>
               <li onClick={() => handleThemeChange('dark')}>Dark</li>
               <li onClick={() => handleThemeChange('light')}>Light</li>
