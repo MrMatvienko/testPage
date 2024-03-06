@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Header } from './Header/Header';
 import SideBar from './SideBar/SideBar';
+import CSS from './App.module.css';
 
 export const App = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const sidebarBackdropRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -21,8 +23,26 @@ export const App = () => {
     setShowSidebar(!showSidebar);
   };
 
+  const closeSidebar = () => {
+    if (window.innerWidth < 1440) {
+      setShowSidebar(false);
+    }
+  };
+
+  const handleBackdropClick = event => {
+    if (event.target === sidebarBackdropRef.current) {
+      closeSidebar();
+    }
+  };
   return (
     <div>
+      {showSidebar && (
+        <div
+          className={CSS.sidebarBackdrop}
+          ref={sidebarBackdropRef}
+          onClick={handleBackdropClick}
+        ></div>
+      )}
       <div style={{ display: 'flex' }}>
         {showSidebar && <SideBar />}
         <div
@@ -36,33 +56,3 @@ export const App = () => {
     </div>
   );
 };
-
-// const [isMobile, setIsMobile] = useState(false);
-
-// useEffect(() => {
-//   const handleResize = () => {
-//     if (window.innerWidth < 1440) {
-//       setIsMobile(true);
-//       setShowSidebar(false); // Hide sidebar on mobile view
-//     } else {
-//       setIsMobile(false);
-//       setShowSidebar(true); // Show sidebar on desktop view
-//     }
-//   };
-
-//   handleResize(); // Call once on initial render
-//   window.addEventListener('resize', handleResize);
-
-//   return () => {
-//     window.removeEventListener('resize', handleResize);
-//   };
-// }, []);
-
-// const toggleSidebar = () => {
-//   setShowSidebar(!showSidebar);
-//   if (!showSidebar) {
-//     document.body.style.overflow = 'hidden'; // Заборона прокрутки сторінки під час відображення сайдбару
-//   } else {
-//     document.body.style.overflow = ''; // Відновлення прокрутки після закриття сайдбару
-//   }
-// };
