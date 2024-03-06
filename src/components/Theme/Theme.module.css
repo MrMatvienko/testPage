@@ -9,10 +9,15 @@
   justify-content: space-between;
   cursor: pointer;
 }
+.themeList {
+  width: 38px;
+  height: 71px;
+}
 
 .theme_text {
   font-weight: 500;
   font-size: 14px;
+  width: 38px;
   letter-spacing: -0.02em;
   color: var(--theme-main-text-color);
 }

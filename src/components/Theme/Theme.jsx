@@ -63,7 +63,7 @@ export const Theme = () => {
         </svg>
         {showMenu && (
           <div ref={menuRef} className={CSS.dropdownMenu}>
-            <ul>
+            <ul className={CSS.themeList}>
               <li onClick={() => handleThemeChange('dark')}>Dark</li>
               <li onClick={() => handleThemeChange('light')}>Light</li>
               <li onClick={() => handleThemeChange('violet')}>Violet</li>
