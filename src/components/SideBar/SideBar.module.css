@@ -8,6 +8,7 @@
   background: var(--main-aside-color);
   transform: translateX(0px);
   transition: transform 0.3s ease;
+  z-index: 99;
 }
 .showSidebar {
   transform: translateX(0);
