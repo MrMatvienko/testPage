@@ -29,10 +29,18 @@ export const Theme = () => {
       }
     };
 
+    const handleKeyPress = event => {
+      if (event.key === 'Escape') {
+        setShowMenu(false);
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyPress);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyPress);
     };
   }, []);
 

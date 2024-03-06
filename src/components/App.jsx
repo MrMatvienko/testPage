@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Header } from './Header/Header';
 import SideBar from './SideBar/SideBar';
-import CSS from './App.module.css';
 
 export const App = () => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const sidebarBackdropRef = useRef(null);
-
+  const sidebarRef = useRef(null);
   useEffect(() => {
     const handleResize = () => {
       setShowSidebar(window.innerWidth >= 1440);
@@ -19,39 +17,45 @@ export const App = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    const handleClickOut = event => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        window.innerWidth < 1440
+      ) {
+        setShowSidebar(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOut);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOut);
+    };
+  }, []);
+
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
-
-  const closeSidebar = () => {
-    if (window.innerWidth < 1440) {
-      setShowSidebar(false);
-    }
-  };
-
-  const handleBackdropClick = event => {
-    if (event.target === sidebarBackdropRef.current) {
-      closeSidebar();
-    }
-  };
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       {showSidebar && (
-        <div
-          className={CSS.sidebarBackdrop}
-          ref={sidebarBackdropRef}
-          onClick={handleBackdropClick}
-        ></div>
-      )}
-      <div style={{ display: 'flex' }}>
-        {showSidebar && <SideBar />}
-        <div
-          style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
-        >
-          <header>
-            <Header toggleSidebar={toggleSidebar} />
-          </header>
+        <div ref={sidebarRef}>
+          <SideBar />
         </div>
+      )}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+        }}
+      >
+        <header>
+          <Header toggleSidebar={toggleSidebar} />
+        </header>
       </div>
     </div>
   );
