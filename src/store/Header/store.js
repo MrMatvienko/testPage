@@ -1,9 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './rootReducer';
+import themeReducer from './themeSlice';
 
-const store = configureStore({
-  reducer: rootReducer,
-  // Додаткові налаштування можна додати тут, якщо потрібно
+export default configureStore({
+  reducer: {
+    theme: themeReducer,
+  },
 });
-
-export default store;

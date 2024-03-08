@@ -55,7 +55,7 @@ export const EditModal = ({ selectedTheme, toggleModal }) => {
               type="password"
               name="password"
               placeholder="Password"
-              className={CSS.inputModal}
+              className={CSS.input}
             />
           </div>
 
