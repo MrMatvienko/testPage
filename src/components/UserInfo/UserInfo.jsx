@@ -31,7 +31,9 @@ export const UserInfo = ({ selectedTheme }) => {
       <svg className={CSS.user_icon} onClick={toggleModal}>
         <use href={sprite + iconId} />
       </svg>
-      {showModal && <EditModal selectedTheme={selectedTheme} />}
+      {showModal && (
+        <EditModal selectedTheme={selectedTheme} toggleModal={toggleModal} />
+      )}
     </div>
   );
 };

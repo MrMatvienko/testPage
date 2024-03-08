@@ -1,6 +1,7 @@
 import CSS from './EditModal.module.css';
 import sprite from '../../assets/images/sprite.svg';
-export const EditModal = ({ selectedTheme }) => {
+
+export const EditModal = ({ selectedTheme, toggleModal }) => {
   let iconId;
   switch (selectedTheme) {
     case 'dark':
@@ -18,7 +19,7 @@ export const EditModal = ({ selectedTheme }) => {
 
   return (
     <div className={CSS.modalContainer}>
-      <svg className={CSS.userIconClose}>
+      <svg className={CSS.userIconClose} onClick={toggleModal}>
         <use href={sprite + '#close-18'} />
       </svg>
       <div className={CSS.infoContainer}>
@@ -30,29 +31,36 @@ export const EditModal = ({ selectedTheme }) => {
           <button className={CSS.buuttonPlus}>+</button>
         </div>
 
-        <div className={CSS.inputsContainer}>
-          <form className={CSS.inputsContainer}>
+        <form className={CSS.formContainer}>
+          <div className={CSS.inputContainer}>
             <input
               type="text"
               name="name"
               placeholder="Name"
-              className={CSS.input}
+              className={CSS.inputModal}
             />
+          </div>
+
+          <div className={CSS.inputContainer}>
             <input
               type="email"
               name="email"
               placeholder="Email"
-              className={CSS.input}
+              className={CSS.inputModal}
             />
+          </div>
+
+          <div className={CSS.inputContainer}>
             <input
               type="password"
               name="password"
               placeholder="Password"
-              className={CSS.input}
+              className={CSS.inputModal}
             />
-          </form>
+          </div>
+
           <button className={CSS.sendButton}>Send</button>
-        </div>
+        </form>
       </div>
     </div>
   );
