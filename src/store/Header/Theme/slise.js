@@ -4,7 +4,7 @@ import { updateTheme } from './operation';
 const themeSlice = createSlice({
   name: 'theme',
   initialState: {
-    currentTheme: localStorage.getItem('selectedTheme') || 'dark',
+    theme: localStorage.getItem('selectedTheme') || 'dark',
     loading: false,
     error: null,
   },
@@ -22,7 +22,7 @@ const themeSlice = createSlice({
       .addCase(updateTheme.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.currentTheme = action.payload;
+        state.theme = action.payload;
       })
       .addCase(updateTheme.rejected, (state, action) => {
         state.loading = false;

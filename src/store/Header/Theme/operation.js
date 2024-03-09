@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://project-team-6-backend.onrender.com';
+
 export const updateTheme = createAsyncThunk(
   'theme/theme',
   async (theme, { rejectWithValue }) => {
@@ -8,7 +10,7 @@ export const updateTheme = createAsyncThunk(
       const response = await axios.patch(
         'https://project-team-6-backend.onrender.com/api/users/themes',
         {
-          theme: theme,
+          theme,
         }
       );
       return response.data;
