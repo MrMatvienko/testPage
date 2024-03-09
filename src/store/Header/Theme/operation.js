@@ -4,18 +4,13 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://project-team-6-backend.onrender.com';
 
 export const updateTheme = createAsyncThunk(
-  'theme/theme',
-  async (theme, { rejectWithValue }) => {
+  'auth/theme',
+  async ({ theme }, thunkAPI) => {
     try {
-      const response = await axios.patch(
-        'https://project-team-6-backend.onrender.com/api/users/themes',
-        {
-          theme,
-        }
-      );
-      return response.data;
+      const { data } = await axios.patch('/api/users/themes', { theme });
+      return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

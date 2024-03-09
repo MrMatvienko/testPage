@@ -15,6 +15,7 @@
 }
 
 [data-theme='light'] {
+  --modal-input-bg: transparent;
   --accent-bg-color: #bedbb0;
   --accent-text-color: #bedbb0;
   --main-text-color: #161616;
@@ -67,6 +68,7 @@
 }
 
 [data-theme='dark'] {
+  --modal-input-bg: #1f1f1f;
   --accent-bg-color: #bedbb0;
   --accent-text-color: #bedbb0;
   --main-text-color: #fff;
@@ -119,6 +121,7 @@
 }
 
 [data-theme='violet'] {
+  --modal-input-bg: transparent;
   --accent-bg-color: #bedbb0;
   --accent-text-color: #5255bc;
   --main-text-color: #fff;
