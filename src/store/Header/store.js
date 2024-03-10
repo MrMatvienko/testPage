@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { themeReducer } from './Theme/slise';
 
 import {
   persistStore,
@@ -23,7 +22,6 @@ export const store = configureStore({
     boards: boardsSlice.reducer,
     auth: authReducer,
     filter: filterSlice.reducer,
-    theme: themeReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
