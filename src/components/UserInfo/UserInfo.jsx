@@ -1,11 +1,13 @@
 import CSS from './UserInfo.module.css';
 import sprite from '../../assets/images/sprite.svg';
-import { useState } from 'react';
+
 import { EditModal } from 'components/EditModal/EditModal';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/auth/selectors';
+import { useState } from 'react';
 
 export const UserInfo = ({ selectedTheme }) => {
+  const [showModal, setShowModal] = useState(false);
   const { user, avatarURL } = useSelector(selectUser);
 
   let iconId;
@@ -28,8 +30,6 @@ export const UserInfo = ({ selectedTheme }) => {
   if (!user) {
     return null;
   }
-
-  const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
     setShowModal(!showModal);
