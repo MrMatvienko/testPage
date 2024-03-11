@@ -1,6 +1,5 @@
 import CSS from './UserInfo.module.css';
 import sprite from '../../assets/images/sprite.svg';
-
 import { EditModal } from 'components/EditModal/EditModal';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'store/auth/selectors';
@@ -8,27 +7,22 @@ import { useState } from 'react';
 
 export const UserInfo = ({ selectedTheme }) => {
   const [showModal, setShowModal] = useState(false);
-  const { user, avatarURL } = useSelector(selectUser);
+  const { avatarURL } = useSelector(selectUser);
 
-  let iconId;
+  let iconToShow;
   switch (selectedTheme) {
     case 'dark':
-      iconId = '#default-user-icon-dark-68';
+      iconToShow = avatarURL || `${sprite}#default-user-icon-dark-68`;
       break;
     case 'light':
-      iconId = '#default-user-icon-light-68';
+      iconToShow = avatarURL || `${sprite}#default-user-icon-light-68`;
       break;
     case 'violet':
-      iconId = '#default-user-icon-violet-68';
+      iconToShow = avatarURL || `${sprite}#default-user-icon-violet-68`;
       break;
     default:
-      iconId = '#default-user-icon-dark-68';
-  }
-
-  const iconPath = `${sprite}${iconId}`;
-
-  if (!user) {
-    return null;
+      iconToShow = avatarURL || `${sprite}#default-user-icon-dark-68`;
+      break;
   }
 
   const toggleModal = () => {
@@ -38,13 +32,11 @@ export const UserInfo = ({ selectedTheme }) => {
   return (
     <div className={CSS.user_info}>
       <p className={CSS.user_name}>Name</p>
-      <img
-        src={avatarURL || iconPath}
-        alt="User Icon"
-        className={CSS.user_icon}
-        onClick={toggleModal}
-      />
-
+      <div>
+        <svg className={CSS.user_icon} onClick={toggleModal}>
+          <use href={iconToShow} />
+        </svg>
+      </div>
       {showModal && (
         <EditModal selectedTheme={selectedTheme} toggleModal={toggleModal} />
       )}
